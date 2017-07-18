@@ -38,7 +38,7 @@ if [ "${ANONYMOUS_ACCESS}" = "true" ]; then
 fi
 
 # Passive access settings
-if [ ! ("${PUBLICHOST}" = "ftp.foo.com") ]; then
+if [ ! "${PUBLICHOST}" = "ftp.foo.com" ]; then
   sed -i "s|pasv_address=|pasv_address="${PUBLICHOST}|g" /etc/vsftpd/vsftpd.conf
   log "Enabled passive address."
 fi
