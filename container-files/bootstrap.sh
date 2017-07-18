@@ -66,7 +66,7 @@ export LOG_FILE=`grep xferlog_file /etc/vsftpd/vsftpd.conf|cut -d= -f2`
 
 # Set permissions for FTP user
 #chown -R ftp:ftp /home/vsftpd/
-chown -R ftp:ftp ${LOCAL_ROOT}
+chown ftp:ftp ${LOCAL_ROOT}
 log "Fixed permissions for newly created user: ${FTP_USER}"
 
 # stdout server info:
