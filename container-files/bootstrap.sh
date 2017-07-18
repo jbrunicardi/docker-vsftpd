@@ -44,7 +44,7 @@ if [ ! "${PUBLICHOST}" = "ftp.foo.com" ]; then
 fi
 
 # Local Root
-sed -i "s|local_root=/home/vsftpd/$USER|local_root=${LOCAL_ROOT}|g" /etc/vsftpd/vsftpd.conf
+sed -i "s|local_root=/home/vsftpd/'$USER'|local_root=${LOCAL_ROOT}|g" /etc/vsftpd/vsftpd.conf
 log "Local root set."
 
 # Xferlog File
