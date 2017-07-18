@@ -18,6 +18,6 @@ RUN \
 
 COPY container-files /
 
-EXPOSE 20-21 21100-21110
+EXPOSE 20-21 50000-50100
 
 ENTRYPOINT ["/bootstrap.sh"]
