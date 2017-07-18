@@ -5,7 +5,9 @@ ENV FTP_USER=admin \
     FTP_PASS=random \
     LOG_STDOUT=false \
     ANONYMOUS_ACCESS=false \
-	PUBLICHOST=ftp.foo.com
+	PUBLICHOST=ftp.foo.com \
+	LOCAL_ROOT=/home/vsftpd/$USER \
+	XFERLOG_FILE=/var/log/vsftpd/vsftpd.log
 
 RUN usermod -u 80 ftp
 RUN groupmod -g 80 ftp

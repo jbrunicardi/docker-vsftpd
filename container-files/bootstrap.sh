@@ -43,9 +43,17 @@ if [ ! "${PUBLICHOST}" = "ftp.foo.com" ]; then
   log "Enabled passive address."
 fi
 
+# Local Root
+sed -i "s|local_root=/home/vsftpd/$USER|local_root=${LOCAL_ROOT}|g" /etc/vsftpd/vsftpd.conf
+log "Local root set."
+
+# Xferlog File
+sed -i "s|xferlog_file=/var/log/vsftpd/vsftpd.log|xferlog_file=${XFERLOG_FILE}|g" /etc/vsftpd/vsftpd.conf
+log "Xferlog file set."
+
 # Create home dir and update vsftpd user db:
-mkdir -p "/home/vsftpd/${FTP_USER}"
-log "Created home directory for user: ${FTP_USER}"
+#mkdir -p "/home/vsftpd/${FTP_USER}"
+#log "Created home directory for user: ${FTP_USER}"
 
 echo -e "${FTP_USER}\n${FTP_PASS}" > /etc/vsftpd/virtual_users.txt
 log "Updated /etc/vsftpd/virtual_users.txt"
@@ -57,7 +65,8 @@ log "Updated vsftpd database"
 export LOG_FILE=`grep xferlog_file /etc/vsftpd/vsftpd.conf|cut -d= -f2`
 
 # Set permissions for FTP user
-chown -R ftp:ftp /home/vsftpd/
+#chown -R ftp:ftp /home/vsftpd/
+chown -R ftp:ftp ${LOCAL_ROOT}
 log "Fixed permissions for newly created user: ${FTP_USER}"
 
 # stdout server info:
