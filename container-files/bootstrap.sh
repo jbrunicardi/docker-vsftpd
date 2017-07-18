@@ -37,6 +37,12 @@ if [ "${ANONYMOUS_ACCESS}" = "true" ]; then
   log "Enabled access for anonymous user."
 fi
 
+# Passive access settings
+if [ ! ("${PUBLICHOST}" = "ftp.foo.com") ]; then
+  sed -i "s|pasv_address=|pasv_address="${PUBLICHOST}|g" /etc/vsftpd/vsftpd.conf
+  log "Enabled passive address."
+fi
+
 # Create home dir and update vsftpd user db:
 mkdir -p "/home/vsftpd/${FTP_USER}"
 log "Created home directory for user: ${FTP_USER}"
